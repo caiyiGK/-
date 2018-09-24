@@ -34,21 +34,62 @@
         &:before    {border-color: transparent;border-right-color: #e5e5e5;border-width: 7px;margin-top: -7px;}
         &:after     {border-color: transparent;border-right-color: #f8f8f8;border-width: 6px;margin-top: -6px}
         .hd         {margin-bottom: 15px;padding-bottom: 5px;border-bottom: 1px solid #e5e5e5;
-            span    {font-size: 12px;color: #666;}
+            span    {font-size: 12px;color: #333;}
             a       {float: right;color: #38f;font-size: 12px;}
         }
     }
 }
 
-.view-component-image   {width: 320px;height: 136px;background: #ebf8fd;color: #88c4dc;text-align: center;
-    .title              {padding-top: 50px;font-size: 14px;line-height: 24px;}
-    .desc               {font-size: 12px;}
+.view-component-image           {width: 320px;height: 136px;background: #ebf8fd;color: #88c4dc;text-align: center;
+    .title                      {padding-top: 50px;font-size: 14px;line-height: 24px;}
+    .desc                       {font-size: 12px;}
 }
 
-.v-c-group              {margin-bottom: 20px;display: flex;flex-wrap: wrap;}
-.v-c-label              {margin-right: 10px;}
-.v-c-image-tpl          {flex: 1;display: flex;flex-wrap: wrap;}
-.v-design-select-tpl    {width: 102px;height: 102px;display: inline-block;border: 1px solid #e5e5e5;margin: 0 10px 15px 0;background: #FFF;text-align: center;text-align: center;cursor: pointer;
-    .v-design-select-img{padding: 5px;}
-    img                 {max-width: 100%;}
+.v-c-group                      {margin-bottom: 20px;display: flex;flex-wrap: wrap;align-items: center;justify-content: center;}
+.v-c-label                      {margin-right: 10px;
+    &.top                       {align-self: flex-start;}
+}
+.v-c-flex                       {flex: 1;display: flex;flex-wrap: wrap;}
+.v-c-image-select-pic           {padding: 15px;background: #FFF;border: 1px dashed #e5e5e5;color: #38f;cursor: pointer;display: flex;justify-content: center;align-items: center;flex-direction: column;height: 80px;
+    .desc                       {color: #999;display: block;margin-top: 2px;}
+}
+/* 填充方式 */
+.v-c-radio                      {
+    label                       {margin-right: 10px;position: relative;display: inline-block;padding-left: 18px;
+        &:before,
+        &:after                 {display: block;content: "";width: 12px;height: 12px;position: absolute;top: 0;left: 0;border-radius: 100%;}
+        &:before                {background: #FFF;border: 1px solid #e5e5e5;z-index: 1;}
+        &:after                 {width: 4px;height: 4px;background: #FFF;z-index: 2;top: 5px;left: 5px;}
+        &.active                {
+            &:before            {background: #38f;border-color: #38f;}
+        }
+    }
+}
+/* 图片间隙 */
+.v-c-range                      {flex: 1;height: 30px;position: relative;
+    .v-c-range-c                {position: relative;height: 30px;margin: 0 9px 0 5px;
+        &:before                {content: '';display: block;position: absolute;border-radius: 8px;top: 50%;left: 0;right: -7px;background: #e5e5e5;height: 4px;margin-top: -2px;z-index: 1;}
+        .line                   {position: absolute;border-radius: 8px;top: 50%;left: 0;background: #bdf;height: 4px;margin-top: -2px;z-index: 1;}
+        .range                  {position: absolute;border-radius: 100%;width: 14px;height: 14px;top: 50%;margin-top: -7px;border: 2px solid #bdf;background: #FFF;z-index: 2;margin-left: -4px;transition: border-color .5s;}
+    }
+    &:hover                     {
+        .line                   {background: #38f;}
+        .range                  {border-color: #38f;transform: scale(1.2);}
+    }
+    input                       {width: 100%;height: 30px;opacity: 0;position: absolute;top: 0;left: 0;z-index: 3;}
+}
+.v-c-gap                        {width: 60px;margin-left: 20px;
+    input                       {border: 1px solid #e5e5e5;height: 30px;background: #FFF;width: 100%;padding: 0 10px;}
+}
+
+/* 一屏幕显示 */
+.v-c-select                     {background: #FFF;border: 1px solid #e5e5e5;height: 30px;min-width: 100px;padding: 0 5px;
+    select                      {background: none;border: none;height: 30px;line-height: 30px;width: 100%;}
+}
+
+.v-c-image-desc                 {margin-top: 5px;color: #999;}
+.v-design-select-tpl            {width: 102px;height: 102px;display: inline-block;border: 1px solid #e5e5e5;margin: 0 10px 15px 0;background: #FFF;text-align: center;text-align: center;cursor: pointer;
+    &.active                    {border-color: #38f;}
+    .v-design-select-tab        {padding: 5px;}
+    img                         {max-width: 100%;}
 }

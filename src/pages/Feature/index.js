@@ -1,16 +1,25 @@
 "use strict";
 import previewPanel from '@/components/preview/preview-panel'
 import previewGroup from '@/components/preview/preview-group'
+import previewDesign from '@/components/preview/preview-design'
+
+import vHeader from '@/components/web/v-header'
+
+
+import cHeader from '@/controller/c-header'
+import cGoods from '@/controller/c-goods'
 
 import LayoutDesign from '@/components/LayoutDesign/code'
-import layoutControlDesign from '@/layout/control/layout-control-design'
 export default {
     name: 'Feature',
     components: {
         previewPanel,
         previewGroup,
-        LayoutDesign,
-        layoutControlDesign
+        previewDesign,
+        vHeader,
+        cHeader,
+        cGoods,
+        LayoutDesign
     },
 
     methods: {

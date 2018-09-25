@@ -9,7 +9,7 @@
 </template>
 <script>
 export default {
-  name: 'layoutControlDesign',
+  name: 'previewDesign',
   props: {
     isShow: {
       type: Boolean,
@@ -33,7 +33,7 @@ export default {
     },
     footerDesc: {
       type: String,
-      default: '个广告，拖动选中的图片广告可对其排序'
+      default: ''
     }
   },
   data () {
@@ -53,7 +53,7 @@ export default {
         span                  {font-size: 12px;color: #333;}
         a                     {float: right;color: #38f;font-size: 12px;}
     }
-    .edit-container           {min-height: 100px;display: flex;justify-content: center;align-items: center;}
+    .edit-container           {min-height: 100px;}
     .edit-footer              {margin-top: 5px;color: #666;}
 }
 </style>

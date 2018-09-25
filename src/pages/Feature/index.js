@@ -1,4 +1,6 @@
 "use strict";
+import Vue from 'vue'
+
 import previewPanel from '@/components/preview/preview-panel'
 import previewGroup from '@/components/preview/preview-group'
 import previewDesign from '@/components/preview/preview-design'
@@ -20,6 +22,17 @@ export default {
         cHeader,
         cGoods,
         LayoutDesign
+    },
+
+    mounted() {
+        new Vue({
+          el: '#abc',
+          components: {previewPanel},
+          template: '<div><preview-panel /></div>',
+          data: {
+            foo: 'header'
+          }
+        })
     },
 
     methods: {

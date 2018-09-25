@@ -1,6 +1,6 @@
 <template lang="pug">
-v-goods-list
-  v-goods-card(v-for="(v, i) in [1, 2, 3, 4]", :key="i")
+v-goods-list(:clas="layout.list")
+  v-goods-card(v-for="(v, i) in [1, 2, 3, 4]", :key="i", :layout="layout")
 </template>
 <script>
 import vGoodsList from './v-goods-list.vue'
@@ -12,6 +12,10 @@ export default {
     vGoodsCard
   },
   props: {
+    layout: {
+      type: Object,
+      default: {}
+    }
   },
   data () {
     return {

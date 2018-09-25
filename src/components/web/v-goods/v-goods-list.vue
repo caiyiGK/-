@@ -1,5 +1,5 @@
 <template lang="pug">
-.v-goods-list
+.v-goods-list()
     ul.v-goods-ul
         <slot></slot>
 </template>
@@ -7,6 +7,7 @@
 export default {
   name: 'vGoodsList',
   props: {
+    clas: [Number, String], 
   },
   data () {
     return {
@@ -16,6 +17,6 @@ export default {
 </script>
 
 <style lang="less">
-.v-goods-list    {}
+.v-goods-list    {overflow: hidden;}
 .v-goods-ul      {padding: 0 5px;overflow: hidden;}
 </style>

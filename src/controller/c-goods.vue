@@ -1,7 +1,7 @@
 <template lang="pug">
 preview-group
-  v-goods
-  preview-design(:isShow="true", :isHeader="false")
+  v-goods(:layout="selectState")
+  preview-design(:isShow="true", title="商品")
     .edit-group.flex
       .edit-label.start
         | 列表样式：
@@ -20,7 +20,7 @@ preview-group
           label(v-for="(v, i) in select_child.fill",
             :key="i",
             :class="[v == selectState.fill ? 'active' : '']"
-            @click="handleChangeList(v, 2)"
+            @click.stop="selectState.fill = v"
           )
            | {{text_fill[v-1]}}
 
@@ -31,7 +31,7 @@ preview-group
           label(v-for="(v, i) in select_child.ratio",
             :key="i",
             :class="[v == selectState.ratio ? 'active' : '']",
-            @click="handleChangeList(v, 3)"
+            @click.stop="selectState.ratio = v"
           )
            | {{text_ratio[v-1]}}
 
@@ -41,8 +41,8 @@ preview-group
         .edit-radio
           label(v-for="(v, i) in select_child.style",
             :key="i",
-            :class="[v == selectState.style ? 'active' : '']"
-            @click="handleChangeList(v, 4)"
+            :class="[v == selectState.style ? 'active' : '']",
+            @click.stop="selectState.style = v"
           )
            | {{text_style[v-1]}}
 
@@ -79,9 +79,12 @@ preview-group
                 label(v-for="(v, i) in select_child.btn.btnId",
                   :key="i",
                   :class="[v == selectState.btn.btnId ? 'active' : '']"
-                  @click.stop="selectState.btn.btnId = v"
+                  @click="handleChangeList(v, 2)"
                 )
-                 | {{'样式'+ v}}
+                  | {{'样式'+ v}}
+                .edit-radio-text(v-if="[3, 4].indexOf(selectState.btn.btnId) >= 0")
+                  input(type="text", v-model="selectState.btn.text")
+                    
           .edit-group
             .edit-check(v-if="select_child.icon.iconId.indexOf(selectState.style) >= 0")
               label
@@ -135,7 +138,10 @@ export default {
           if (index < 0) this.selectState.style = this.select_child.style[0]
           break;
         case 2:
-          this.selectState.fill = v
+          this.selectState.btn.btnId = v
+          if (v < 3) this.selectState.btn.text = ''
+          if (v == 3) this.selectState.btn.text = '马上抢'
+          if (v == 4) this.selectState.btn.text = '购买'
           break;
         case 3:
           this.selectState.ratio = v
@@ -153,7 +159,7 @@ export default {
   data () {
     return {
       isShow: false,
-      selectState: {
+      selectState: { // 图片选中规格
         list: 1,
         fill: 1,
         ratio: 1,
@@ -163,14 +169,15 @@ export default {
         price: true,
         btn: {
           bool: false,
-          btnId: 1
+          btnId: 1,
+          text: '',
         },
         icon: {
           bool: false,
           iconId: 1
         }
       },
-      select_child: {
+      select_child: { // 默认规格
         fill: [1, 2],
         ratio: [1, 2],
         style: [1, 2, 4],
@@ -191,8 +198,9 @@ export default {
       text_ratio: ['3:2', '1:1'],
       text_style: ['卡片1', '卡片2', '瀑布流', '极简', '促销'],
       text_icon: ['新品', '热卖', 'NEW', 'HOT', '自定义'],
+      text_btnTxt: ['马上抢', '购买'],
       list_array: [1, 2, 3, 4, 5],
-      bodyState: {
+      bodyState: { // 所有规格
         p_1: {
           fill: [1, 2],
           ratio: [1, 2],
@@ -315,6 +323,10 @@ export default {
 }
 
 .edit-box         {background: #FFF;border-radius: 4px;border: 1px solid #e5e5e5;padding: 10px 0;}
+
+.edit-radio-text  {display: block;width: 100%;margin-top: 10px;
+  input           {border: 1px solid #d1d1d1;width: 100px;height: 30px;padding: 0 10px;}
+}
 
 .edit-upload      {display: block;width: 100%;margin-top: 10px;
   a               {display: block;height: 50px;padding: 32px 0 0 55px;position: relative;color: #999;

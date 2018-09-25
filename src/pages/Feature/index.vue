@@ -4,7 +4,8 @@
 
         .layout-showcase
             .layout-alert 提示：在浏览器中发现未提交的内容，是否使用该内容替换当前内容？使用
-            
+            #abc 
+
             //- 模拟手机界面
             preview-panel
                 template(slot="body")
@@ -106,6 +107,7 @@
 
 </template>
 <script type="text/javascript" src="./index.js"></script>
+
 <style lang="less">
 @import './index.less';
 </style>
